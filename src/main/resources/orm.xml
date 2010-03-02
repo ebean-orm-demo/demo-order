@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="1.0" xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd">
+
+<package>app.data</package>
+
+<entity class="app.data.Order">
+	<sql-select name="simple.sql">
+		<query>
+			select id, status, order_date from o_order
+		</query>
+	</sql-select>
+	
+	<named-query name="with.cust">
+		<query>
+			find order 
+			join customer
+			join customer.shippingAddress
+			join details
+			join details.product (sku, name)
+			order by customer.name desc
+			limit 10
+		</query>
+	</named-query>
+</entity>
+
+<named-native-query name="find.order">
+	<query>
+		select * from o_order where id = :id
+	</query>
+</named-native-query>
+
+
+</entity-mappings>
