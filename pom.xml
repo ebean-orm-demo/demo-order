@@ -45,6 +45,13 @@
 			<url>http://www.avaje.org/archiva/repository/internal</url>
 		</repository>
 	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>avaje.org</id>
+			<url>http://www.avaje.org/archiva/repository/internal</url>
+			<layout>default</layout>
+		</pluginRepository>
+	</pluginRepositories>
 
 
 	<!-- Enhance the test classes -->
@@ -69,31 +76,22 @@
 				<configuration>
 					<useSystemClassLoader>false</useSystemClassLoader>
 				</configuration>
-			</plugin>			
+			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-antrun-plugin</artifactId>
+				<groupId>org.avaje</groupId>
+				<artifactId>ebean-maven-enhancer</artifactId>
+				<version>2.5.0</version>
 				<executions>
 					<execution>
-						<id>compile</id>
-						<phase>process-ebean-enhancement</phase>
-						<configuration>
-							<tasks>
-								<property name="compile_classpath" refid="maven.compile.classpath" />
-								<echo
-									message="Ebean enhancing test classes debug level -----------------------------------" />
-								<echo message="Classpath: ${compile_classpath}" />
-								<taskdef name="ebeanEnhance"
-									classname="com.avaje.ebean.enhance.ant.AntEnhanceTask"
-									classpath="${compile_classpath}" />
-								<ebeanEnhance classSource="${project.build.testOutputDirectory}"
-									packages="app.data.**" transformArgs="debug=1" />
-							</tasks>
-							<encoding>UTF-8</encoding>
-						</configuration>
+						<id>main</id>
+						<phase>process-classes</phase>
 						<goals>
-							<goal>run</goal>
+							<goal>enhance</goal>
 						</goals>
+						<configuration>
+							<packages>app.data</packages>
+							<transformArgs>debug=2</transformArgs>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
