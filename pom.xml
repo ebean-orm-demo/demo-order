@@ -79,7 +79,7 @@
 			</plugin>
 			<plugin>
 				<groupId>org.avaje</groupId>
-				<artifactId>ebean-maven-enhancer</artifactId>
+				<artifactId>ebean-maven-enhancement-plugin</artifactId>
 				<version>2.5.0</version>
 				<executions>
 					<execution>
