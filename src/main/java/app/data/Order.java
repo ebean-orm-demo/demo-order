@@ -1,7 +1,6 @@
 package app.data;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -28,7 +27,9 @@ import com.avaje.ebean.validation.NotNull;
 })
 public class Order extends Domain {
 
-	//@EnumMapping(nameValuePairs="APPROVED=A, COMPLETE=C, NEW=N, SHIPPED=S")
+    private static final long serialVersionUID = 1L;
+
+    //@EnumMapping(nameValuePairs="APPROVED=A, COMPLETE=C, NEW=N, SHIPPED=S")
 	public enum Status {
 		NEW,
 		APPROVED,
@@ -45,7 +46,7 @@ public class Order extends Domain {
 //	String custName;
 
 	
-	@Enumerated(value=EnumType.ORDINAL)
+	@Enumerated(value=EnumType.STRING)
     Status status = Status.NEW;
     
     Date orderDate = new Date(System.currentTimeMillis());
@@ -60,7 +61,7 @@ public class Order extends Domain {
 
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="order")
-    List<OrderDetail> details = new ArrayList<OrderDetail>();
+    List<OrderDetail> details;
     
 
     /**
