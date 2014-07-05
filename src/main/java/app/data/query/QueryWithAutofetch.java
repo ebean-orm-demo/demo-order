@@ -23,7 +23,7 @@ public class QueryWithAutofetch {
 
 		List<Order> list = Ebean.find(Order.class)
 			.setAutofetch(true)
-			.join("customer")
+			.fetch("customer")
 			.where()
 				.eq("status", Order.Status.NEW)
 			.order().desc("shipDate")

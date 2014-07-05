@@ -28,11 +28,11 @@ public class QueryWithLotsOfJoins {
 	private void joinsWithFullObjects() {
 
 		List<Order> list = Ebean.find(Order.class)
-			.join("details")
-			.join("details.product")
-			.join("customer")
-			.join("customer.billingAddress")
-			.join("customer.shippingAddress")
+			.fetch("details")
+			.fetch("details.product")
+			.fetch("customer")
+			.fetch("customer.billingAddress")
+			.fetch("customer.shippingAddress")
 			.where().eq("status",Order.Status.NEW)
 			.findList();
 
@@ -44,9 +44,9 @@ public class QueryWithLotsOfJoins {
 		
 		List<Order> list = Ebean.find(Order.class)
 			.select("id, status, orderDate")
-			.join("customer", "name")
-			.join("details", "id, orderQty")
-			.join("details.product", "name, sku")
+			.fetch("customer", "name")
+			.fetch("details", "id, orderQty")
+			.fetch("details.product", "name, sku")
 			.where().eq("status",Order.Status.NEW)
 			.findList();
 

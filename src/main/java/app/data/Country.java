@@ -3,8 +3,7 @@ package app.data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.avaje.ebean.validation.Length;
+import javax.validation.constraints.Size;
 
 /**
  * Country entity bean.
@@ -14,38 +13,38 @@ import com.avaje.ebean.validation.Length;
 public class Country {
 
     @Id
-    @Length(max=2)
+    @Size(max = 2)
     String code;
 
-    @Length(max=60)
+    @Size(max = 60)
     String name;
 
     /**
      * Return code.
-     */    
+     */
     public String getCode() {
-  	    return code;
+        return code;
     }
 
     /**
      * Set code.
-     */    
+     */
     public void setCode(String code) {
-  	    this.code = code;
+        this.code = code;
     }
 
     /**
      * Return name.
-     */    
+     */
     public String getName() {
-  	    return name;
+        return name;
     }
 
     /**
      * Set name.
-     */    
+     */
     public void setName(String name) {
-  	    this.name = name;
+        this.name = name;
     }
 
 

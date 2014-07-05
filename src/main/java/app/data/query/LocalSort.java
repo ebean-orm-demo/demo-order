@@ -18,7 +18,7 @@ public class LocalSort {
 		Setup.resetData();
 		
 		List<Order> list = Ebean.find(Order.class)
-			.join("customer")
+			.fetch("customer")
 			.order("id")
 			.findList();
 

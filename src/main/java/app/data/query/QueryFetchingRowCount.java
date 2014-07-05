@@ -26,7 +26,7 @@ public class QueryFetchingRowCount {
 	private void run() {
 
 		Query<Order> query = Ebean.find(Order.class)
-			.join("customer")
+			.fetch("customer")
 			.where()
 				.gt("id", 0)
 				.eq("status", Order.Status.NEW)

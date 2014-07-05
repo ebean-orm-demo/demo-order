@@ -2,11 +2,11 @@ package app.data.query;
 
 import java.util.List;
 
+import com.avaje.ebean.FetchConfig;
 import setup.Setup;
 import app.data.Order;
 
 import com.avaje.ebean.Ebean;
-import com.avaje.ebean.JoinConfig;
 
 
 public class PagingWithFirstRowMaxRows {
@@ -25,7 +25,7 @@ public class PagingWithFirstRowMaxRows {
 
 		
 		List<Order> list = Ebean.find(Order.class)
-			.join("details", new JoinConfig().query())
+			.fetch("details", new FetchConfig().query())
 			.where()
 				.gt("id", 0)
 				.eq("status", Order.Status.NEW)

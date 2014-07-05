@@ -57,8 +57,8 @@ public class LargeQueryProcessing {
 		// and order details in our object graphs
 		List<Order> list = Ebean.find(Order.class)
 			.setAutofetch(false)
-			.join("details")
-			.join("customer")
+			.fetch("details")
+			.fetch("customer")
 			.setListener(listener)
 			.findList();
 

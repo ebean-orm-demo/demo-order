@@ -2,11 +2,11 @@ package app.data.query;
 
 import java.util.List;
 
+import com.avaje.ebean.FetchConfig;
 import setup.Setup;
 import app.data.Order;
 
 import com.avaje.ebean.Ebean;
-import com.avaje.ebean.JoinConfig;
 import com.avaje.ebean.Page;
 import com.avaje.ebean.PagingList;
 
@@ -32,7 +32,7 @@ public class PagingWithPagingList {
 			// NOTE That "fetch joins" to OneToMany can't be 
 			// used with SQL firstRow/maxRows. JoinConfig 
 			// provides a good solution to this
-			.join("details", new JoinConfig().lazy(pageSize))
+			.fetch("details", new FetchConfig().lazy(pageSize))
 			.where()
 				.gt("id", 0)
 				.eq("status", Order.Status.NEW)

@@ -25,7 +25,7 @@ public class AsyncQueryExecution {
 
 		
 		FutureList<Order> futureList = Ebean.find(Order.class)
-			.join("customer")
+			.fetch("customer")
 			.where()
 				.gt("id", 0)
 				.eq("status", Order.Status.NEW)

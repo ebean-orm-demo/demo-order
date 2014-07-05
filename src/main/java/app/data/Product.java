@@ -6,11 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.constraints.Size;
 
 import com.avaje.ebean.annotation.CreatedTimestamp;
 import com.avaje.ebean.annotation.Sql;
 import com.avaje.ebean.annotation.SqlSelect;
-import com.avaje.ebean.validation.Length;
 
 /**
  * Product entity bean.
@@ -26,7 +26,7 @@ public class Product {
     @Id
     Integer id;
 
-    @Length(max=20)
+    @Size(max = 20)
     String sku;
 
     String name;

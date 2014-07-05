@@ -24,7 +24,7 @@ public class SimpleQuery {
 
 		
 		List<Order> list = Ebean.find(Order.class)
-			.join("customer")
+			.fetch("customer")
 			.where()
 				.gt("id", 0)
 				.eq("status", Order.Status.NEW)
